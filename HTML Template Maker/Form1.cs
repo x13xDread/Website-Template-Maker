@@ -17,5 +17,9 @@ namespace HTML_Template_Maker
             InitializeComponent();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
