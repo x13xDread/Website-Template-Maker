@@ -40,6 +40,7 @@ namespace HTML_Template_Maker
             this.generateTemplateButton = new System.Windows.Forms.Button();
             this.projectDirectoryInput = new System.Windows.Forms.TextBox();
             this.projectDirectoryInputLabel = new System.Windows.Forms.Label();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // optionsLabel
@@ -115,12 +116,13 @@ namespace HTML_Template_Maker
             // 
             // generateTemplateButton
             // 
-            this.generateTemplateButton.Location = new System.Drawing.Point(49, 355);
+            this.generateTemplateButton.Location = new System.Drawing.Point(53, 305);
             this.generateTemplateButton.Name = "generateTemplateButton";
-            this.generateTemplateButton.Size = new System.Drawing.Size(134, 60);
+            this.generateTemplateButton.Size = new System.Drawing.Size(129, 33);
             this.generateTemplateButton.TabIndex = 9;
             this.generateTemplateButton.Text = "button1";
             this.generateTemplateButton.UseVisualStyleBackColor = true;
+            this.generateTemplateButton.Click += new System.EventHandler(this.generateTemplateButton_Click);
             // 
             // projectDirectoryInput
             // 
@@ -138,11 +140,19 @@ namespace HTML_Template_Maker
             this.projectDirectoryInputLabel.TabIndex = 11;
             this.projectDirectoryInputLabel.Text = "Project Directory:";
             // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(23, 344);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(200, 23);
+            this.progressBar.TabIndex = 12;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1165, 688);
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.projectDirectoryInputLabel);
             this.Controls.Add(this.projectDirectoryInput);
             this.Controls.Add(this.generateTemplateButton);
@@ -156,6 +166,7 @@ namespace HTML_Template_Maker
             this.Controls.Add(this.optionsLabel);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -174,6 +185,7 @@ namespace HTML_Template_Maker
         private System.Windows.Forms.Button generateTemplateButton;
         private System.Windows.Forms.TextBox projectDirectoryInput;
         private System.Windows.Forms.Label projectDirectoryInputLabel;
+        private System.Windows.Forms.ProgressBar progressBar;
     }
 }
 
