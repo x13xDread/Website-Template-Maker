@@ -29,6 +29,7 @@ namespace HTML_Template_Maker
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.optionsLabel = new System.Windows.Forms.Label();
             this.stylesheetOption = new System.Windows.Forms.CheckBox();
             this.jsOption = new System.Windows.Forms.CheckBox();
@@ -41,6 +42,8 @@ namespace HTML_Template_Maker
             this.projectDirectoryInput = new System.Windows.Forms.TextBox();
             this.projectDirectoryInputLabel = new System.Windows.Forms.Label();
             this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // optionsLabel
@@ -147,6 +150,10 @@ namespace HTML_Template_Maker
             this.progressBar.Size = new System.Drawing.Size(200, 23);
             this.progressBar.TabIndex = 12;
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -167,6 +174,7 @@ namespace HTML_Template_Maker
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,6 +194,7 @@ namespace HTML_Template_Maker
         private System.Windows.Forms.TextBox projectDirectoryInput;
         private System.Windows.Forms.Label projectDirectoryInputLabel;
         private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }
 
