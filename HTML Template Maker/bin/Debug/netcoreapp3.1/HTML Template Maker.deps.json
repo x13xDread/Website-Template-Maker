@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "HTML Template Maker/1.0.0": {
+        "runtime": {
+          "HTML Template Maker.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "HTML Template Maker/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
