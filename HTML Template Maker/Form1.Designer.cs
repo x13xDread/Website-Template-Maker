@@ -123,7 +123,7 @@ namespace HTML_Template_Maker
             this.generateTemplateButton.Name = "generateTemplateButton";
             this.generateTemplateButton.Size = new System.Drawing.Size(129, 33);
             this.generateTemplateButton.TabIndex = 9;
-            this.generateTemplateButton.Text = "button1";
+            this.generateTemplateButton.Text = "Generate Template";
             this.generateTemplateButton.UseVisualStyleBackColor = true;
             this.generateTemplateButton.Click += new System.EventHandler(this.generateTemplateButton_Click);
             // 

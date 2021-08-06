@@ -41,15 +41,18 @@ namespace HTML_Template_Maker
             //show progress bar control
             progressBar.Visible = true;
             //get form data
-            if(!readForm())
+            if(!ReadForm())
             {
-                //display error
-
                 //reset all data
+                ResetForm();
+                //enable all controls
+                EnableControls();
+                //hide progress bar
+                progressBar.Visible = false;
             }
             else
             {
-                progressBar.Value = 10;
+                GenerateTemplate();
             }
         }
         //disables form controls
@@ -85,7 +88,7 @@ namespace HTML_Template_Maker
             generateTemplateButton.Enabled = true;
         }
         //read data from form
-        public bool readForm()
+        public bool ReadForm()
         {            
             jsOptionSelected = jsOption.Checked;
             stylesheetOptionSelected = stylesheetOption.Checked;
@@ -122,6 +125,58 @@ namespace HTML_Template_Maker
             return true;
             
         }
-        
+        //reset all form values
+        public void ResetForm()
+        {
+            //global variable reset
+            jsOptionSelected = false;
+            stylesheetOptionSelected = false;
+            bootstrapOptionSelected = false;
+            numPages = 0;
+            path = "";
+            projectName = "";
+        }
+        //build template
+        public void GenerateTemplate()
+        {
+            string stylesheetText = "";
+            string jsText = "";
+            string bootstrapText = "";
+            //create project directory
+            //use this for tests D:\Programming
+            DirectoryInfo di = Directory.CreateDirectory(path);
+            //create index.html
+            //check options
+            if (stylesheetOptionSelected)
+                stylesheetText = "<link rel=\"stylesheet\" href=\"styles/mystyle.css\">";
+            if (jsOptionSelected)
+                jsText = "<script src=\"/scripts/myScript.js\"></script>";
+            if (bootstrapOptionSelected)
+                bootstrapText = "<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We\" crossorigin=\"anonymous\">\n<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj\" crossorigin=\"anonymous\"></script>";
+            string bodyText = GenerateBodyText();
+            string headerText = "";
+            string indexText = $"<!DOCTYPE html>\n<html>\n<head>\n{stylesheetText}\n{bootstrapText}\n</head>\n<body>\n{bodyText}\n{jsText}\n</body>\n</html>";
+            GeneratePage(indexText, path + "\\index.html");
+            //if styles added create stylesheet
+
+            //if js added create js
+        }
+        public void GeneratePage(string fileContent, string filePath)
+        {
+            using (FileStream fs = File.Create(filePath))
+            {
+
+                byte[] info = new UTF8Encoding(true).GetBytes(fileContent);
+                // Add some information to the file.
+                fs.Write(info, 0, info.Length);
+            }
+        }
+        public string GenerateBodyText()
+        {
+            string bodyText = $"\n<h1>{projectName}</h1>\n";
+
+            return bodyText;
+        }
+
     }
 }
