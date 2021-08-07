@@ -39,12 +39,13 @@ namespace HTML_Template_Maker
             //disable all controls except for the progress bar
             DisableControls();
             //show progress bar control
+            progressBar.Value = 0;
             progressBar.Visible = true;
             //get form data
             if(!ReadForm())
             {
                 //reset all data
-                ResetForm();
+                ResetForm(false);
                 //enable all controls
                 EnableControls();
                 //hide progress bar
@@ -52,7 +53,13 @@ namespace HTML_Template_Maker
             }
             else
             {
+                progressBar.Value = 10;
+                //generate the template
                 GenerateTemplate();
+                progressBar.Value = 100;
+                //enable all controls and reset all data
+                ResetForm(true);
+                EnableControls();                
             }
         }
         //disables form controls
@@ -126,7 +133,7 @@ namespace HTML_Template_Maker
             
         }
         //reset all form values
-        public void ResetForm()
+        public void ResetForm(bool resetControls)
         {
             //global variable reset
             jsOptionSelected = false;
@@ -135,6 +142,15 @@ namespace HTML_Template_Maker
             numPages = 0;
             path = "";
             projectName = "";
+            if(resetControls)
+            {
+                jsOption.Checked = false;
+                bootstrapOption.Checked = false;
+                stylesheetOption.Checked = false;
+                pageNumInput.Text = "";
+                projectDirectoryInput.Text = "";
+                nameInput.Text = "";
+            }
         }
         //build template
         public void GenerateTemplate()
@@ -145,21 +161,30 @@ namespace HTML_Template_Maker
             //create project directory
             //use this for tests D:\Programming
             DirectoryInfo di = Directory.CreateDirectory(path);
+            progressBar.Value = 15;
             //create index.html
             //check options
             if (stylesheetOptionSelected)
                 stylesheetText = "<link rel=\"stylesheet\" href=\"styles/mystyle.css\">";
+            progressBar.Value = 20;
             if (jsOptionSelected)
                 jsText = "<script src=\"/scripts/myScript.js\"></script>";
+            progressBar.Value = 25;
             if (bootstrapOptionSelected)
                 bootstrapText = "<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We\" crossorigin=\"anonymous\">\n<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj\" crossorigin=\"anonymous\"></script>";
+            progressBar.Value = 30;
+            //get text for options
             string bodyText = GenerateBodyText();
-            string headerText = "";
-            string indexText = $"<!DOCTYPE html>\n<html>\n<head>\n{stylesheetText}\n{bootstrapText}\n</head>\n<body>\n{bodyText}\n{jsText}\n</body>\n</html>";
+            progressBar.Value = 40;
+            string headerText = $"<meta charset=\"UTF - 8\">\n<meta name=\"viewport\" content=\"width = device - width, initial - scale = 1.0\">\n<title>{projectName}</title>\n";
+            string indexText = $"<!DOCTYPE html>\n<html>\n<head>\n{headerText}\n{stylesheetText}\n{bootstrapText}\n</head>\n<body>\n{bodyText}\n{jsText}\n</body>\n</html>";
+            //generate index page
             GeneratePage(indexText, path + "\\index.html");
+            progressBar.Value = 50;
             //if styles added create stylesheet
 
             //if js added create js
+            
         }
         public void GeneratePage(string fileContent, string filePath)
         {
