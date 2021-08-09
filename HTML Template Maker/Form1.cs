@@ -174,17 +174,21 @@ namespace HTML_Template_Maker
                 bootstrapText = "<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We\" crossorigin=\"anonymous\">\n<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj\" crossorigin=\"anonymous\"></script>";
             progressBar.Value = 30;
             //get text for options
-            string bodyText = GenerateBodyText();
+            string bodyText = GenerateBodyText(true, "-1");
             progressBar.Value = 40;
             string headerText = $"<meta charset=\"UTF - 8\">\n<meta name=\"viewport\" content=\"width = device - width, initial - scale = 1.0\">\n<title>{projectName}</title>\n";
             string indexText = $"<!DOCTYPE html>\n<html>\n<head>\n{headerText}\n{stylesheetText}\n{bootstrapText}\n</head>\n<body>\n{bodyText}\n{jsText}\n</body>\n</html>";
             //generate index page
             GeneratePage(indexText, path + "\\index.html");
             progressBar.Value = 50;
+
+            //generate extra pages
+            GenerateExtraPages();
+
             //if styles added create stylesheet
 
             //if js added create js
-            
+
         }
         public void GeneratePage(string fileContent, string filePath)
         {
@@ -196,11 +200,55 @@ namespace HTML_Template_Maker
                 fs.Write(info, 0, info.Length);
             }
         }
-        public string GenerateBodyText()
+        //generate bodytext
+        public string GenerateBodyText(bool isIndex, string pageNumber)
         {
-            string bodyText = $"\n<h1>{projectName}</h1>\n";
-
-            return bodyText;
+            if (isIndex)
+            {
+                string bodyText = $"\n<a href =\"index.html\"><h1>{projectName}</h1></a>\n<br>\n";
+                for (int i = 0; i < numPages; i++)
+                {
+                    bodyText += $"\n<a href = \"pages/page{i}.html\">Page {i}</a><br>";
+                }
+               return bodyText;
+            }
+            else
+            {
+                string bodyText = $"\n<a href =\"../index.html\"><h1>{projectName} - {pageNumber}</h1></a>\n<br>\n";
+                for (int i = 0; i < numPages; i++)
+                {
+                    bodyText += $"\n<a href = \"page{i}.html\">Page {i}</a><br>";
+                }
+                return bodyText;
+            }
+        }
+        //generate all extra pages
+        public void GenerateExtraPages()
+        {
+            DirectoryInfo di = Directory.CreateDirectory(path + "\\pages");
+            string indexText = "";
+            string headerText = "";
+            string bodyText = "";
+            string stylesheetText = "";
+            string jsText = "";
+            string bootstrapText = "";
+            for (int i = 0; i < numPages; i++)
+            {
+               headerText = $"<meta charset=\"UTF - 8\">\n<meta name=\"viewport\" content=\"width = device - width, initial - scale = 1.0\">\n<title>{projectName} - {i}</title>\n";
+               bodyText = GenerateBodyText(false, i.ToString());
+               
+                //check options
+               if (stylesheetOptionSelected)
+                   stylesheetText = "<link rel=\"stylesheet\" href=\"../styles/mystyle.css\">";               
+               if (jsOptionSelected)
+                   jsText = "<script src=\"../scripts/myScript.js\"></script>";               
+               if (bootstrapOptionSelected)
+                    bootstrapText = "<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We\" crossorigin=\"anonymous\">\n<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj\" crossorigin=\"anonymous\"></script>";
+               
+                indexText = $"<!DOCTYPE html>\n<html>\n<head>\n{headerText}\n{stylesheetText}\n{bootstrapText}\n</head>\n<body>\n{bodyText}\n{jsText}\n</body>\n</html>";
+               //generate page
+               GeneratePage(indexText, path + $"\\pages\\page{i}.html");
+            }
         }
 
     }
