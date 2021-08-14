@@ -49,6 +49,7 @@ namespace HTML_Template_Maker
             // optionsLabel
             // 
             this.optionsLabel.AutoSize = true;
+            this.optionsLabel.ForeColor = System.Drawing.Color.Azure;
             this.optionsLabel.Location = new System.Drawing.Point(23, 67);
             this.optionsLabel.Name = "optionsLabel";
             this.optionsLabel.Size = new System.Drawing.Size(49, 15);
@@ -58,6 +59,7 @@ namespace HTML_Template_Maker
             // stylesheetOption
             // 
             this.stylesheetOption.AutoSize = true;
+            this.stylesheetOption.ForeColor = System.Drawing.Color.Azure;
             this.stylesheetOption.Location = new System.Drawing.Point(23, 95);
             this.stylesheetOption.Name = "stylesheetOption";
             this.stylesheetOption.Size = new System.Drawing.Size(121, 19);
@@ -68,6 +70,7 @@ namespace HTML_Template_Maker
             // jsOption
             // 
             this.jsOption.AutoSize = true;
+            this.jsOption.ForeColor = System.Drawing.Color.Azure;
             this.jsOption.Location = new System.Drawing.Point(23, 120);
             this.jsOption.Name = "jsOption";
             this.jsOption.Size = new System.Drawing.Size(128, 19);
@@ -78,6 +81,7 @@ namespace HTML_Template_Maker
             // bootstrapOption
             // 
             this.bootstrapOption.AutoSize = true;
+            this.bootstrapOption.ForeColor = System.Drawing.Color.Azure;
             this.bootstrapOption.Location = new System.Drawing.Point(23, 145);
             this.bootstrapOption.Name = "bootstrapOption";
             this.bootstrapOption.Size = new System.Drawing.Size(119, 19);
@@ -95,6 +99,7 @@ namespace HTML_Template_Maker
             // nameInputLabel
             // 
             this.nameInputLabel.AutoSize = true;
+            this.nameInputLabel.ForeColor = System.Drawing.Color.Azure;
             this.nameInputLabel.Location = new System.Drawing.Point(23, 199);
             this.nameInputLabel.Name = "nameInputLabel";
             this.nameInputLabel.Size = new System.Drawing.Size(82, 15);
@@ -104,6 +109,7 @@ namespace HTML_Template_Maker
             // pageNumInputLabel
             // 
             this.pageNumInputLabel.AutoSize = true;
+            this.pageNumInputLabel.ForeColor = System.Drawing.Color.Azure;
             this.pageNumInputLabel.Location = new System.Drawing.Point(23, 231);
             this.pageNumInputLabel.Name = "pageNumInputLabel";
             this.pageNumInputLabel.Size = new System.Drawing.Size(272, 15);
@@ -119,12 +125,14 @@ namespace HTML_Template_Maker
             // 
             // generateTemplateButton
             // 
+            this.generateTemplateButton.BackColor = System.Drawing.Color.Teal;
+            this.generateTemplateButton.ForeColor = System.Drawing.Color.Azure;
             this.generateTemplateButton.Location = new System.Drawing.Point(53, 305);
             this.generateTemplateButton.Name = "generateTemplateButton";
             this.generateTemplateButton.Size = new System.Drawing.Size(129, 33);
             this.generateTemplateButton.TabIndex = 9;
             this.generateTemplateButton.Text = "Generate Template";
-            this.generateTemplateButton.UseVisualStyleBackColor = true;
+            this.generateTemplateButton.UseVisualStyleBackColor = false;
             this.generateTemplateButton.Click += new System.EventHandler(this.generateTemplateButton_Click);
             // 
             // projectDirectoryInput
@@ -137,6 +145,7 @@ namespace HTML_Template_Maker
             // projectDirectoryInputLabel
             // 
             this.projectDirectoryInputLabel.AutoSize = true;
+            this.projectDirectoryInputLabel.ForeColor = System.Drawing.Color.Azure;
             this.projectDirectoryInputLabel.Location = new System.Drawing.Point(23, 258);
             this.projectDirectoryInputLabel.Name = "projectDirectoryInputLabel";
             this.projectDirectoryInputLabel.Size = new System.Drawing.Size(98, 15);
@@ -158,6 +167,7 @@ namespace HTML_Template_Maker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DarkSlateGray;
             this.ClientSize = new System.Drawing.Size(1165, 688);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.projectDirectoryInputLabel);
@@ -172,7 +182,7 @@ namespace HTML_Template_Maker
             this.Controls.Add(this.stylesheetOption);
             this.Controls.Add(this.optionsLabel);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Website Template Maker";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
