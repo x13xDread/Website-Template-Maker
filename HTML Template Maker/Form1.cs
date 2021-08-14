@@ -186,9 +186,13 @@ namespace HTML_Template_Maker
             GenerateExtraPages();
 
             //if styles added create stylesheet
-
+            if (stylesheetOptionSelected)
+                GenerateCSS();
             //if js added create js
-
+            if (jsOptionSelected)
+                GenerateJS();
+            //create assets directory (for images and other stuff)
+            GenerateAssets();
         }
         public void GeneratePage(string fileContent, string filePath)
         {
@@ -250,6 +254,30 @@ namespace HTML_Template_Maker
                GeneratePage(indexText, path + $"\\pages\\page{i}.html");
             }
         }
+        //generate CSS file and directory
+        public void GenerateCSS()
+        {
+            //make directory for style sheets
+            DirectoryInfo di = Directory.CreateDirectory(path + "\\styles");
 
+            //make file
+            GeneratePage("/*Place your styles here*/", path + "\\styles\\mystlye.css");
+        }
+
+        //generate JS file and directory
+        public void GenerateJS()
+        {
+            //make directory for scripts
+            DirectoryInfo di = Directory.CreateDirectory(path + "\\scripts");
+
+            //make file
+            GeneratePage("//Place your JS here", path + "\\scripts\\myScript.js");
+        }
+        //Generate Assets directory and assets
+        public void GenerateAssets()
+        {
+            //make directory for assets
+            DirectoryInfo di = Directory.CreateDirectory(path + "\\assets");
+        }
     }
 }
