@@ -11,4 +11,4 @@ To use the app you can open the solution file and compile or use the executeable
 # Example
 To see an example checkout the ExampleProject Directory! This project was generated using this format: 
 <br><br>
-![Image of ExampleProject Setup](https://github.com/x13xDread/Website-Template-Maker/blob/main/ExampleProject/ExampleProjectSetup.PNG?raw=true)
+![Image of ExampleProject Setup](https://github.com/x13xDread/Website-Template-Maker/blob/main/ExampleProject/assets/ExampleProjectSetup.PNG?raw=true)
