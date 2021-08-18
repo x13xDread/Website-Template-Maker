@@ -5,6 +5,7 @@ Make custom built templates or build your own! Choose from options like:
 - Pre-made JS file linked on each page
 - Bootstrap already linked into your project
 - A fully customizeable index page with the basics already there and links to each of those extra pages
+- Want your own custom template across every page? Write your own html to be included in every page instead.
 - and hopefully more if I ever get around to it
 # Running the Application
 To use the app you can open the solution file and compile or use the executeable in HTML Template Maker/bin/Debug/netcoreapp3.1/
