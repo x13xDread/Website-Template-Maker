@@ -1,5 +1,9 @@
 # Website-Template-Maker
-Make custom built templates or build your own! Choose from options like:
+Make custom built templates or build your own!
+<br><br>
+![image](https://user-images.githubusercontent.com/58883535/129976288-e70b29ef-6606-4239-a7e7-3ec43c9d0495.png)
+<br><br>
+Choose from options like:
 - Adding up to ten pre-made Pages
 - Pre-made CSS file linked on each page
 - Pre-made JS file linked on each page
