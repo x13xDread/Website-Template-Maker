@@ -17,6 +17,7 @@ namespace HTML_Template_Maker
         bool jsOptionSelected = false;
         bool stylesheetOptionSelected = false;
         bool bootstrapOptionSelected = false;
+        bool customTextSelected = false;
         int numPages = 0;
         string path = "";
         string projectName = "";
@@ -62,6 +63,20 @@ namespace HTML_Template_Maker
                 EnableControls();                
             }
         }
+        private void customTextCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            //enable/disable custom input field
+            if (customTextInput.Enabled)
+            {
+                customTextInput.Enabled = false;
+                customTextSelected = false;
+            }
+            else
+            {
+                customTextInput.Enabled = true;
+                customTextSelected = true;
+            }
+        }
         //disables form controls
         public void DisableControls()
         {
@@ -69,7 +84,7 @@ namespace HTML_Template_Maker
             stylesheetOption.Enabled = false;
             jsOption.Enabled = false;
             bootstrapOption.Enabled = false;
-
+            customTextInput.Enabled = false;
             //text fields
             nameInput.Enabled = false;
             pageNumInput.Enabled = false;
@@ -85,7 +100,7 @@ namespace HTML_Template_Maker
             stylesheetOption.Enabled = true;
             jsOption.Enabled = true;
             bootstrapOption.Enabled = true;
-
+            
             //text fields
             nameInput.Enabled = true;
             pageNumInput.Enabled = true;
@@ -139,6 +154,7 @@ namespace HTML_Template_Maker
             jsOptionSelected = false;
             stylesheetOptionSelected = false;
             bootstrapOptionSelected = false;
+            customTextSelected = false;
             numPages = 0;
             path = "";
             projectName = "";
@@ -158,26 +174,38 @@ namespace HTML_Template_Maker
             string stylesheetText = "";
             string jsText = "";
             string bootstrapText = "";
+            string indexText = "";
             //create project directory
             //use this for tests D:\Programming
             DirectoryInfo di = Directory.CreateDirectory(path);
             progressBar.Value = 15;
             //create index.html
-            //check options
-            if (stylesheetOptionSelected)
-                stylesheetText = "<link rel=\"stylesheet\" href=\"styles/mystyle.css\">";
-            progressBar.Value = 20;
-            if (jsOptionSelected)
-                jsText = "<script src=\"/scripts/myScript.js\"></script>";
-            progressBar.Value = 25;
-            if (bootstrapOptionSelected)
-                bootstrapText = "<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We\" crossorigin=\"anonymous\">\n<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj\" crossorigin=\"anonymous\"></script>";
-            progressBar.Value = 30;
-            //get text for options
-            string bodyText = GenerateBodyText(true, "-1");
-            progressBar.Value = 40;
-            string headerText = $"<meta charset=\"UTF - 8\">\n<meta name=\"viewport\" content=\"width = device - width, initial - scale = 1.0\">\n<title>{projectName}</title>\n";
-            string indexText = $"<!DOCTYPE html>\n<html>\n<head>\n{headerText}\n{stylesheetText}\n{bootstrapText}\n</head>\n<body>\n{bodyText}\n{jsText}\n</body>\n</html>";
+            if (!customTextSelected)
+            {
+                //check options
+                if (stylesheetOptionSelected)
+                    stylesheetText = "<link rel=\"stylesheet\" href=\"styles/myStyle.css\">";
+                progressBar.Value = 20;
+                if (jsOptionSelected)
+                    jsText = "<script src=\"/scripts/myScript.js\"></script>";
+                progressBar.Value = 25;
+                if (bootstrapOptionSelected)
+                    bootstrapText = "<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We\" crossorigin=\"anonymous\">\n<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj\" crossorigin=\"anonymous\"></script>";
+                progressBar.Value = 30;
+                //get text for options
+                string bodyText = GenerateBodyText(true, "-1");
+                progressBar.Value = 40;
+                string headerText = $"<meta charset=\"UTF - 8\">\n<meta name=\"viewport\" content=\"width = device - width, initial - scale = 1.0\">\n<title>{projectName}</title>\n";
+                indexText = $"<!DOCTYPE html>\n<html>\n<head>\n{headerText}\n{stylesheetText}\n{bootstrapText}\n</head>\n<body>\n{bodyText}\n{jsText}\n</body>\n</html>";
+            }
+            else
+            {
+                //put custom input into indexText
+                foreach (char c in customTextInput.Text)
+                {
+                    indexText += c;
+                }
+            }
             //generate index page
             GeneratePage(indexText, path + "\\index.html");
             progressBar.Value = 50;
@@ -238,20 +266,31 @@ namespace HTML_Template_Maker
             string bootstrapText = "";
             for (int i = 0; i < numPages; i++)
             {
-               headerText = $"<meta charset=\"UTF - 8\">\n<meta name=\"viewport\" content=\"width = device - width, initial - scale = 1.0\">\n<title>{projectName} - {i}</title>\n";
-               bodyText = GenerateBodyText(false, i.ToString());
-               
-                //check options
-               if (stylesheetOptionSelected)
-                   stylesheetText = "<link rel=\"stylesheet\" href=\"../styles/mystyle.css\">";               
-               if (jsOptionSelected)
-                   jsText = "<script src=\"../scripts/myScript.js\"></script>";               
-               if (bootstrapOptionSelected)
-                    bootstrapText = "<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We\" crossorigin=\"anonymous\">\n<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj\" crossorigin=\"anonymous\"></script>";
-               
-                indexText = $"<!DOCTYPE html>\n<html>\n<head>\n{headerText}\n{stylesheetText}\n{bootstrapText}\n</head>\n<body>\n{bodyText}\n{jsText}\n</body>\n</html>";
-               //generate page
-               GeneratePage(indexText, path + $"\\pages\\page{i}.html");
+                if (!customTextSelected)
+                {
+                    headerText = $"<meta charset=\"UTF - 8\">\n<meta name=\"viewport\" content=\"width = device - width, initial - scale = 1.0\">\n<title>{projectName} - {i}</title>\n";
+                    bodyText = GenerateBodyText(false, i.ToString());
+
+                    //check options
+                    if (stylesheetOptionSelected)
+                        stylesheetText = "<link rel=\"stylesheet\" href=\"../styles/myStyle.css\">";
+                    if (jsOptionSelected)
+                        jsText = "<script src=\"../scripts/myScript.js\"></script>";
+                    if (bootstrapOptionSelected)
+                        bootstrapText = "<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We\" crossorigin=\"anonymous\">\n<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj\" crossorigin=\"anonymous\"></script>";
+
+                    indexText = $"<!DOCTYPE html>\n<html>\n<head>\n{headerText}\n{stylesheetText}\n{bootstrapText}\n</head>\n<body>\n{bodyText}\n{jsText}\n</body>\n</html>";
+                }
+                else
+                {
+                    //put custom input into indexText
+                    foreach(char c in customTextInput.Text)
+                    {
+                        indexText += c;
+                    }
+                }
+                //generate page
+                GeneratePage(indexText, path + $"\\pages\\page{i}.html");
             }
         }
         //generate CSS file and directory
@@ -261,7 +300,7 @@ namespace HTML_Template_Maker
             DirectoryInfo di = Directory.CreateDirectory(path + "\\styles");
 
             //make file
-            GeneratePage("/*Place your styles here*/", path + "\\styles\\mystlye.css");
+            GeneratePage("/*Place your styles here*/", path + "\\styles\\myStlye.css");
         }
 
         //generate JS file and directory
@@ -279,5 +318,7 @@ namespace HTML_Template_Maker
             //make directory for assets
             DirectoryInfo di = Directory.CreateDirectory(path + "\\assets");
         }
+
+        
     }
 }

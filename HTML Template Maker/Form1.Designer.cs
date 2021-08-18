@@ -168,11 +168,12 @@ namespace HTML_Template_Maker
             // 
             // customTextInput
             // 
+            this.customTextInput.Enabled = false;
             this.customTextInput.Location = new System.Drawing.Point(369, 93);
             this.customTextInput.Name = "customTextInput";
             this.customTextInput.Size = new System.Drawing.Size(765, 508);
             this.customTextInput.TabIndex = 13;
-            this.customTextInput.Text = "";
+            this.customTextInput.Text = "<!DOCTYPE html>\n<html>\n<head></head>\n<body></body>\n<footer></footer>\n</html>";
             // 
             // customInputLabel
             // 
@@ -194,6 +195,7 @@ namespace HTML_Template_Maker
             this.customTextCheckbox.TabIndex = 15;
             this.customTextCheckbox.Text = "Use custom HTML for all files";
             this.customTextCheckbox.UseVisualStyleBackColor = true;
+            this.customTextCheckbox.CheckedChanged += new System.EventHandler(this.customTextCheckbox_CheckedChanged);
             // 
             // Form1
             // 
