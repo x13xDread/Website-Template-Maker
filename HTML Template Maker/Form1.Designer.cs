@@ -43,6 +43,9 @@ namespace HTML_Template_Maker
             this.projectDirectoryInputLabel = new System.Windows.Forms.Label();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.customTextInput = new System.Windows.Forms.RichTextBox();
+            this.customInputLabel = new System.Windows.Forms.Label();
+            this.customTextCheckbox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -163,12 +166,44 @@ namespace HTML_Template_Maker
             // 
             this.errorProvider.ContainerControl = this;
             // 
+            // customTextInput
+            // 
+            this.customTextInput.Location = new System.Drawing.Point(369, 93);
+            this.customTextInput.Name = "customTextInput";
+            this.customTextInput.Size = new System.Drawing.Size(765, 508);
+            this.customTextInput.TabIndex = 13;
+            this.customTextInput.Text = "";
+            // 
+            // customInputLabel
+            // 
+            this.customInputLabel.AutoSize = true;
+            this.customInputLabel.ForeColor = System.Drawing.Color.White;
+            this.customInputLabel.Location = new System.Drawing.Point(369, 66);
+            this.customInputLabel.Name = "customInputLabel";
+            this.customInputLabel.Size = new System.Drawing.Size(118, 15);
+            this.customInputLabel.TabIndex = 14;
+            this.customInputLabel.Text = "Custom HTML Input:";
+            // 
+            // customTextCheckbox
+            // 
+            this.customTextCheckbox.AutoSize = true;
+            this.customTextCheckbox.ForeColor = System.Drawing.Color.White;
+            this.customTextCheckbox.Location = new System.Drawing.Point(22, 170);
+            this.customTextCheckbox.Name = "customTextCheckbox";
+            this.customTextCheckbox.Size = new System.Drawing.Size(180, 19);
+            this.customTextCheckbox.TabIndex = 15;
+            this.customTextCheckbox.Text = "Use custom HTML for all files";
+            this.customTextCheckbox.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
             this.ClientSize = new System.Drawing.Size(1165, 688);
+            this.Controls.Add(this.customTextCheckbox);
+            this.Controls.Add(this.customInputLabel);
+            this.Controls.Add(this.customTextInput);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.projectDirectoryInputLabel);
             this.Controls.Add(this.projectDirectoryInput);
@@ -205,6 +240,9 @@ namespace HTML_Template_Maker
         private System.Windows.Forms.Label projectDirectoryInputLabel;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.CheckBox customTextCheckbox;
+        private System.Windows.Forms.Label customInputLabel;
+        private System.Windows.Forms.RichTextBox customTextInput;
     }
 }
 
