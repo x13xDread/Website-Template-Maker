@@ -12,7 +12,7 @@ Choose from options like:
 - Want your own custom template across every page? Write your own html to be included in every page instead.
 - and hopefully more if I ever get around to it
 # Running the Application
-To use the app you can open the solution file and compile or use the executeable in HTML Template Maker/bin/Debug/netcoreapp3.1/
+To use the app you can open the solution file and compile or use the executeable [here](https://github.com/x13xDread/Website-Template-Maker/tree/main/HTML%20Template%20Maker/bin/Debug/netcoreapp3.1)
 # Example
 To see an example checkout the ExampleProject Directory! This project was generated using this format: 
 <br><br>
