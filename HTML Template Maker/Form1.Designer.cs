@@ -46,6 +46,7 @@ namespace HTML_Template_Maker
             this.customTextInput = new System.Windows.Forms.RichTextBox();
             this.customInputLabel = new System.Windows.Forms.Label();
             this.customTextCheckbox = new System.Windows.Forms.CheckBox();
+            this.customBodyCheckbox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,7 +95,7 @@ namespace HTML_Template_Maker
             // 
             // nameInput
             // 
-            this.nameInput.Location = new System.Drawing.Point(108, 196);
+            this.nameInput.Location = new System.Drawing.Point(108, 292);
             this.nameInput.Name = "nameInput";
             this.nameInput.Size = new System.Drawing.Size(242, 23);
             this.nameInput.TabIndex = 5;
@@ -103,7 +104,7 @@ namespace HTML_Template_Maker
             // 
             this.nameInputLabel.AutoSize = true;
             this.nameInputLabel.ForeColor = System.Drawing.Color.Azure;
-            this.nameInputLabel.Location = new System.Drawing.Point(23, 199);
+            this.nameInputLabel.Location = new System.Drawing.Point(20, 295);
             this.nameInputLabel.Name = "nameInputLabel";
             this.nameInputLabel.Size = new System.Drawing.Size(82, 15);
             this.nameInputLabel.TabIndex = 6;
@@ -113,7 +114,7 @@ namespace HTML_Template_Maker
             // 
             this.pageNumInputLabel.AutoSize = true;
             this.pageNumInputLabel.ForeColor = System.Drawing.Color.Azure;
-            this.pageNumInputLabel.Location = new System.Drawing.Point(23, 231);
+            this.pageNumInputLabel.Location = new System.Drawing.Point(22, 324);
             this.pageNumInputLabel.Name = "pageNumInputLabel";
             this.pageNumInputLabel.Size = new System.Drawing.Size(272, 15);
             this.pageNumInputLabel.TabIndex = 7;
@@ -121,7 +122,7 @@ namespace HTML_Template_Maker
             // 
             // pageNumInput
             // 
-            this.pageNumInput.Location = new System.Drawing.Point(189, 228);
+            this.pageNumInput.Location = new System.Drawing.Point(189, 321);
             this.pageNumInput.Name = "pageNumInput";
             this.pageNumInput.Size = new System.Drawing.Size(34, 23);
             this.pageNumInput.TabIndex = 8;
@@ -130,7 +131,7 @@ namespace HTML_Template_Maker
             // 
             this.generateTemplateButton.BackColor = System.Drawing.Color.Teal;
             this.generateTemplateButton.ForeColor = System.Drawing.Color.Azure;
-            this.generateTemplateButton.Location = new System.Drawing.Point(53, 305);
+            this.generateTemplateButton.Location = new System.Drawing.Point(59, 390);
             this.generateTemplateButton.Name = "generateTemplateButton";
             this.generateTemplateButton.Size = new System.Drawing.Size(129, 33);
             this.generateTemplateButton.TabIndex = 9;
@@ -140,7 +141,7 @@ namespace HTML_Template_Maker
             // 
             // projectDirectoryInput
             // 
-            this.projectDirectoryInput.Location = new System.Drawing.Point(127, 257);
+            this.projectDirectoryInput.Location = new System.Drawing.Point(127, 350);
             this.projectDirectoryInput.Name = "projectDirectoryInput";
             this.projectDirectoryInput.Size = new System.Drawing.Size(223, 23);
             this.projectDirectoryInput.TabIndex = 10;
@@ -149,7 +150,7 @@ namespace HTML_Template_Maker
             // 
             this.projectDirectoryInputLabel.AutoSize = true;
             this.projectDirectoryInputLabel.ForeColor = System.Drawing.Color.Azure;
-            this.projectDirectoryInputLabel.Location = new System.Drawing.Point(23, 258);
+            this.projectDirectoryInputLabel.Location = new System.Drawing.Point(20, 353);
             this.projectDirectoryInputLabel.Name = "projectDirectoryInputLabel";
             this.projectDirectoryInputLabel.Size = new System.Drawing.Size(98, 15);
             this.projectDirectoryInputLabel.TabIndex = 11;
@@ -157,7 +158,7 @@ namespace HTML_Template_Maker
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(23, 344);
+            this.progressBar.Location = new System.Drawing.Point(23, 429);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(200, 23);
             this.progressBar.TabIndex = 12;
@@ -197,12 +198,25 @@ namespace HTML_Template_Maker
             this.customTextCheckbox.UseVisualStyleBackColor = true;
             this.customTextCheckbox.CheckedChanged += new System.EventHandler(this.customTextCheckbox_CheckedChanged);
             // 
+            // customBodyCheckbox
+            // 
+            this.customBodyCheckbox.AutoSize = true;
+            this.customBodyCheckbox.ForeColor = System.Drawing.Color.White;
+            this.customBodyCheckbox.Location = new System.Drawing.Point(23, 195);
+            this.customBodyCheckbox.Name = "customBodyCheckbox";
+            this.customBodyCheckbox.Size = new System.Drawing.Size(250, 19);
+            this.customBodyCheckbox.TabIndex = 16;
+            this.customBodyCheckbox.Text = "Place Custom HTML in the body of all files";
+            this.customBodyCheckbox.UseVisualStyleBackColor = true;
+            this.customBodyCheckbox.CheckedChanged += new System.EventHandler(this.customBodyCheckbox_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
             this.ClientSize = new System.Drawing.Size(1165, 688);
+            this.Controls.Add(this.customBodyCheckbox);
             this.Controls.Add(this.customTextCheckbox);
             this.Controls.Add(this.customInputLabel);
             this.Controls.Add(this.customTextInput);
@@ -245,6 +259,7 @@ namespace HTML_Template_Maker
         private System.Windows.Forms.CheckBox customTextCheckbox;
         private System.Windows.Forms.Label customInputLabel;
         private System.Windows.Forms.RichTextBox customTextInput;
+        private System.Windows.Forms.CheckBox customBodyCheckbox;
     }
 }
 

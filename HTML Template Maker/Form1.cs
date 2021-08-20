@@ -18,12 +18,14 @@ namespace HTML_Template_Maker
         bool stylesheetOptionSelected = false;
         bool bootstrapOptionSelected = false;
         bool customTextSelected = false;
+        bool customBodySelected = false;
         int numPages = 0;
         string path = "";
         string projectName = "";
         //other global data
         string errorMsg = "";
 
+        #region Controls Events
         public Form1()
         {
             InitializeComponent();
@@ -65,8 +67,11 @@ namespace HTML_Template_Maker
         }
         private void customTextCheckbox_CheckedChanged(object sender, EventArgs e)
         {
+            //disable the custom html in all bodies option
+            customBodyCheckbox.Checked = false;
+
             //enable/disable custom input field
-            if (customTextInput.Enabled)
+            if (!customTextCheckbox.Checked)
             {
                 customTextInput.Enabled = false;
                 customTextSelected = false;
@@ -77,6 +82,24 @@ namespace HTML_Template_Maker
                 customTextSelected = true;
             }
         }
+        private void customBodyCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            //uncheck the place custom html in all files option
+            customTextCheckbox.Checked = false;
+
+            //enable/disable custom input field
+            if (!customBodyCheckbox.Checked)
+            {
+                customTextInput.Enabled = false;
+                customBodySelected = false;
+            }
+            else
+            {
+                customTextInput.Enabled = true;
+                customBodySelected = true;
+            }
+        }
+        #endregion
         //disables form controls
         public void DisableControls()
         {
@@ -242,6 +265,8 @@ namespace HTML_Template_Maker
                 {
                     bodyText += $"\n<a href = \"pages/page{i}.html\">Page {i}</a><br>";
                 }
+                if(customBodySelected)
+                    bodyText += "\n" + customTextInput.Text;
                return bodyText;
             }
             else
@@ -251,6 +276,8 @@ namespace HTML_Template_Maker
                 {
                     bodyText += $"\n<a href = \"page{i}.html\">Page {i}</a><br>";
                 }
+                if (customBodySelected)
+                    bodyText += "\n" + customTextInput.Text;
                 return bodyText;
             }
         }
